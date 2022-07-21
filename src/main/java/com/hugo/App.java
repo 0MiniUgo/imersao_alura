@@ -73,6 +73,6 @@ public class App {
         for (int i = 0; i < nota; i++) {
             star += "* ";
         }
-        System.out.println("Stars: " + star);
+        System.out.println("Stars: " + "\u001B[33m" + star + "\u001B[0m");
     }
 }
