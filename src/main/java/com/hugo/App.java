@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.hugo.entities.TvOrMovie;
+
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -50,14 +52,27 @@ public class App {
 
         // Extrair só os dados que interessam (titulo, poster, classificação)
         JsonParser parser = new JsonParser();
-        List<Map<String, String>> listaDeFilmes = parser.parse(body);
+        List<TvOrMovie> listaDeFilmes = parser.parse(body);
 
         // Exibir os dados
-        for (Map<String, String> filme : listaDeFilmes) {
-            System.out.println(filme.get("title"));
-            System.out.println(filme.get("image"));
-            System.out.println(filme.get("imDbRating"));
+        for (TvOrMovie filme : listaDeFilmes) {
+            System.out.println("Rank: " + filme.getRank());
+            System.out.println("Title: " + filme.getTitle());
+            System.out.println("Rarting: " + filme.getImDbRating());
+            stars(filme.getImDbRating());
+            System.out.println("Image: " + filme.getImage());
             System.out.println();
         }
+    }
+
+    public static void stars(String rating){
+
+        Double nota = Double.parseDouble(rating);
+        String star = "";
+
+        for (int i = 0; i < nota; i++) {
+            star += "* ";
+        }
+        System.out.println("Stars: " + star);
     }
 }
